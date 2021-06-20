@@ -33,7 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
       if(this.isChrome) { 
           this.startWebSpeechRecogn();
       } else if(this.isFirefox) {
-          this.startTensorRecogn();
       }
       this.isListening = true;
   }
@@ -43,7 +42,6 @@ export class AppComponent implements OnInit, OnDestroy {
           if(this.isChrome) {
               this.stopWebSpeechRecogn();
           } else if(this.isFirefox) {
-              this.stopTensorRecogn();
           }
       }
       this.isListening = false;
@@ -53,29 +51,13 @@ export class AppComponent implements OnInit, OnDestroy {
       this.webSpeechService.start();
       this.webSpeechService.getTransWords().subscribe((text) => {
           text ? console.log("found") : '';
-      }), ((err:any) => {
+      }, (err:any) => {
           console.log("error", err);
       })
   }
 
   private stopWebSpeechRecogn() {
       this.webSpeechService.stop();
-  }
-
-  private startTensorRecogn() {
-      this.inferAudioService.init();
-      this.inferAudioService.getRecogResults().subscribe((scores: any[]) => {
-          if(scores){
-              this.scores = scores;
-              if(this.scores[1] > 0.75) {
-                  console.log("found");
-              }
-          }
-      })
-  }
-  
-  private stopTensorRecogn() {
-      this.inferAudioService.stopListening();
   }
 
   ngOnDestroy() {
