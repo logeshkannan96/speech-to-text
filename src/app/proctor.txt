@@ -1,0 +1,7 @@
+admin proctor
+    1. no of words (live)
+    2. words used (on visiting test)
+    3. whether a word is spoken
+    4. performance
+    5. timestamps (backend)
+    6. firefox and chrome (separation)
