@@ -51,8 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this.webSpeechService.start();
       this.webSpeechService.getTransWords().subscribe((text) => {
           text ? console.log("found") : '';
-      }, (err:any) => {
-          console.log("error", err);
       })
   }
 
